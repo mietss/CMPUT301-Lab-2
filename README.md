@@ -5,10 +5,10 @@
 - **CCID:** `1850463`
 
 ## References and Resources
-Looked up how to select an item in a LazyColumn
-Source - https://stackoverflow.com/a/72537011
-Posted by nglauber
-Retrieved 2026-09-09, License - CC BY-SA 4.0
+Looked up how to select an item in a LazyColumn\n
+Source - https://stackoverflow.com/a/72537011\n
+Posted by nglauber\n
+Retrieved 2026-09-09, License - CC BY-SA 4.0\n
 
 ## Verbal Collaboration
 N/A
