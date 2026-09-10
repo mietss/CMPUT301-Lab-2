@@ -1,6 +1,5 @@
 package com.example.listycity
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -14,7 +13,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
@@ -22,6 +20,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -71,6 +70,7 @@ fun GreetingPreview() {
     }
 }
 
+//The list of cities
 class CityRepository{
     private val _cities = mutableStateListOf(
         "Edmonton", "Vancouver", "Moscow", "Sydney", "Berlin",
@@ -89,7 +89,9 @@ class CityRepository{
     }
 }
 
-@SuppressLint("RememberReturnType")
+
+
+//The screen
 @Composable
 fun CityListScreen(
     cities: List<String>,
@@ -99,11 +101,14 @@ fun CityListScreen(
 ){
     var newCityName by remember { mutableStateOf("") }
     var showInput by remember { mutableStateOf(false) }
-    var selectedIndex by remember { mutableStateOf(-1)}
+    var selectedIndex by remember { mutableIntStateOf(-1)}
 
+    //Inputs and controls
     Column(modifier = modifier.fillMaxSize()) {
         Row(modifier = Modifier.padding(16.dp)){
+
             if(!showInput){
+                //Add city button
                 Button(
                     onClick = {
                         showInput = true
@@ -114,6 +119,8 @@ fun CityListScreen(
 
                 Spacer(modifier = Modifier.width(8.dp))
 
+                //Remove city button,
+                //only active when a city has been selected in the list, and the list is not empty
                 if(!cities.isEmpty() && selectedIndex != -1){
                     Button(
                         onClick = {
@@ -125,6 +132,7 @@ fun CityListScreen(
                 }
             }
 
+            //New city input
             if(showInput){
                 OutlinedTextField(
                     value = newCityName,
@@ -135,6 +143,7 @@ fun CityListScreen(
 
                 Spacer(modifier = Modifier.width(8.dp))
 
+                //Confirm button
                 Button(
                     onClick = {
                         if (newCityName.isNotBlank()){
@@ -149,6 +158,7 @@ fun CityListScreen(
 
                 Spacer(modifier = Modifier.width(4.dp))
 
+                //Cancel button
                 Button(
                     onClick = {
                         if (newCityName.isNotBlank()){
@@ -163,6 +173,7 @@ fun CityListScreen(
 
         }
 
+        //City list
         LazyColumn(
             modifier = Modifier.fillMaxSize()
         ) {
