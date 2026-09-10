@@ -124,7 +124,8 @@ fun CityListScreen(
                 if(!cities.isEmpty() && selectedIndex != -1){
                     Button(
                         onClick = {
-                                onRemoveCity(selectedIndex)
+                            onRemoveCity(selectedIndex)
+                            selectedIndex = -1
                         }
                     ) {
                         Text("Remove City")
